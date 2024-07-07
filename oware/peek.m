@@ -1,3 +1,7 @@
-function b = peek(b, i, t)
-  b = MoveOware(b, i, t);
+function n = peek(b, i, t)
+  n = owareBoard();
+  n.board = b.board;
+  n.score = b.score;
+  n.turn = b.turn;
+  n = moveOware(n, i, t);
 end

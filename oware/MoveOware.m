@@ -1,4 +1,4 @@
-function b = MoveOware(b, i, t)
+function b = moveOware(b, i, t)
   if i < 1 || i > 6
     error('Must choose a space between 1 and 6')
   elseif t ~= b.turn
