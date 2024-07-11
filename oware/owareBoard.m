@@ -28,7 +28,7 @@ classdef OwareBoard
     endfunction
 
     function legal = LegalMove(obj, i, t)
-      if (i >= 1) & (i <= 6) & (obj.Turn == t)
+      if (i >= 1) && (i <= 6) && (obj.Turn == t)
         legal =  (obj.Board( (i + (t-1)*6) ) > 0);
       else
         legal = 0;
@@ -41,7 +41,7 @@ classdef OwareBoard
         w = 1;
       elseif obj.Score(2) > 24
         w = 2;
-      elseif obj.Score(1) == 24 & obj.Score(2) == 24
+      elseif obj.Score(1) == 24 && obj.Score(2) == 24
         w = 3;
       else
         w = 0;
