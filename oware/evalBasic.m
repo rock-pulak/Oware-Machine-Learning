@@ -1,15 +1,15 @@
 function v = evalBasic(b)
   %todo: input validation
-  if b.score(1) > 24
+  if b.Score(1) > 24
     v = inf;
     return
-  elseif b.score(2) > 24
+  elseif b.Score(2) > 24
     v = -inf;
     return
   endif
-  v = b.score(1)-b.score(2);
-  v = v - 0.5 * sum((b.board(1:6))(b.board(1:6) < 3));
-  v = v + 0.5 * sum((b.board(7:12))(b.board(7:12) < 3));
+  v = b.Score(1)-b.Score(2);
+  v = v - 0.5 * sum((b.Board(1:6))(b.Board(1:6) < 3));
+  v = v + 0.5 * sum((b.Board(7:12))(b.Board(7:12) < 3));
 end
 
 %TODO:

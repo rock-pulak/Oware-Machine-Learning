@@ -3,7 +3,7 @@ function gameLog = playGame(south, southDepth, north, northDepth)
   % and return a legal move
   gameLog = [OwareBoard()];
   board = gameLog(end);
-  while ~board.Winner()
+  while board.Winner() == 0
     if board.Turn == 1
       p = south;
       d = southDepth;

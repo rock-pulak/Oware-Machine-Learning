@@ -37,28 +37,36 @@ classdef OwareBoard
     endfunction
 
     function w = Winner(obj)
-      w = obj.Board;
+      if obj.Score(1) > 24
+        w = 1;
+      elseif obj.Score(2) > 24
+        w = 2;
+      elseif obj.Score(1) == 24 & obj.Score(2) == 24
+        w = 3;
+      else
+        w = 0;
+      endif
     endfunction
 
-    %function nObj = Move(obj, i, t)
-    %  i = i + 6*(t-1);
-    %  add = mod(obj.Board(i), 11);
-    %  e = mod(i - 1 + add, 12) + 1;
-    %  nObj = OwareBoard(obj);
-    %  nObj.Board = (nObj.Board + ones(1, 12) .* fix(nObnj.Board(i)./11)) .* ([1:12] != i);
-    %  nObj.Board(([mod(i:i+add-1, 12)] + 1)) =  nObj.Board(([mod(i:i+add-1, 12)] + 1))+1;
+    function nObj = Move(obj, i, t)
+      i = i + 6*(t-1);
+      add = mod(obj.Board(i), 11);
+      e = mod(i - 1 + add, 12) + 1;
+      nObj = OwareBoard(obj);
+      nObj.Board = (nObj.Board + ones(1, 12) .* fix(nObj.Board(i)./11)) .* ([1:12] != i);
+      nObj.Board(([mod(i:i+add-1, 12)] + 1)) =  nObj.Board(([mod(i:i+add-1, 12)] + 1))+1;
 
       %todo: Simplify
-    %  while (nObj.Board(e) == 2 || nObj.Board(e) == 3) && fix(e/6)+1 ~= t
-    %    nObj.Score(nObj.Turn) = nObj.Score(nObj.Turn) + nObj.Board(e);
-    %    nObj.Board(e) = 0;
-    %    e = mod(e-2, 12) + 1;
-    %  end
-    %  nObj.Turn = 3-nObj.Turn;
-    %  if sum(nObj.Board(1:6)) == 0 || sum(nObj.Board(7:12)) == 0
-    %    nObj.Score(nObj.Turn) = nObj.Score(nObj.Turn) + sum(nObj.Board);
-    %    nObj.Board = zeros(1, 12);
-    %  endif
-    %endfunction
+      while (nObj.Board(e) == 2 || nObj.Board(e) == 3) && fix(e/6)+1 ~= t
+        nObj.Score(nObj.Turn) = nObj.Score(nObj.Turn) + nObj.Board(e);
+        nObj.Board(e) = 0;
+        e = mod(e-2, 12) + 1;
+      end
+      nObj.Turn = 3-nObj.Turn;
+      if sum(nObj.Board(1:6)) == 0 || sum(nObj.Board(7:12)) == 0
+        nObj.Score(nObj.Turn) = nObj.Score(nObj.Turn) + sum(nObj.Board);
+        nObj.Board = zeros(1, 12);
+      endif
+    endfunction
   endmethods
 endclassdef

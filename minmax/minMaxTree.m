@@ -14,14 +14,14 @@ function root = minMaxTree(state, depth, heuristic, parent)
   %TODO: Pruning
   if depth > 0
     for i = 1:6
-      if isLegalMove(state, i, state.turn)
-        n = minMaxTree(peek(state, i, state.turn), depth-1, heuristic, root);
+      if state.LegalMove( i, state.Turn)
+        n = minMaxTree(state.Move(i, state.Turn), depth-1, heuristic, root);
         root.children{i} = n;
       endif
     endfor
     if depth ~= 0
-      co = {@gt, @lt}{state.turn};
-      cv = [-inf, inf](state.turn);
+      co = {@gt, @lt}{state.Turn};
+      cv = [-inf, inf](state.Turn);
       for i = 1:6
         if isa(root.children{i}, 'struct')
           if co(root.children{i}.score, cv)
