@@ -10,5 +10,11 @@
 %  results(index) = results(index) + 1;
 %end
 %results
+o = OwareBoard()
+o.Normalize()
+o.LegalMove(4, 1)
+o.LegalMove(7, 1)
+o.LegalMove(-3, 1)
+o.LegalMove(2, 2)
+c = OwareBoard(o)
 
-playGame( @evalBasic, 3, @evalBasic, 3)
